@@ -34,3 +34,6 @@ ko_pron
 opencc; sys_platform != 'linux'
 opencc==1.1.1; sys_platform == 'linux'
 python_mecab_ko; sys_platform != 'win32'
+flask
+flask-cors
+nanoid
