@@ -559,7 +559,7 @@ class Text2SemanticDecoder(nn.Module):
                 xy_attn_mask = None
                 logits = logits[:, :-1]
             samples = sample(
-                logits[0], y, top_k=top_k, top_p=top_p, repetition_penalty=1.35, temperature=temperature
+                logits[0], y, top_k=top_k, top_p=top_p, repetition_penalty=1.5, temperature=temperature
             )[0].unsqueeze(0)
 
             y = torch.concat([y, samples], dim=1)

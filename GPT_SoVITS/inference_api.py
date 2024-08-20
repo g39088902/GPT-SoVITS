@@ -42,9 +42,9 @@ async def tts():
     target_text = target_text.replace("、", ",")
     target_text = re.sub(r'[a-zA-Z「」（）“”*/\\\[\]]', '', target_text)
     file_name_text = target_text[:20]
-    if os.path.exists(f"C:/Users/Lima/PycharmProjects/GPT-SoVITS/output/output_{file_name_text}.wav"):
+    if os.path.exists(f"GPT_SoVITS/output/output_{file_name_text}.wav"):
         print("命中缓存:",file_name_text)
-        return send_file(f"C:/Users/Lima/PycharmProjects/GPT-SoVITS/output/output_{file_name_text}.wav",
+        return send_file(f"output_{file_name_text}.wav",
                          as_attachment=True)
 
     global lock
@@ -56,7 +56,7 @@ async def tts():
 
     # Synthesize audio
     synthesis_result = get_tts_wav(
-        ref_wav_path="C:/Users/Lima/Downloads/绝区零语音包1.0（中）/妮可/ffecc22bf76bda56.wav",
+        ref_wav_path="GPT_SoVITS/output/ffecc22bf76bda56.wav",
         prompt_text="园景实业一直想要依靠工程业绩提升拓普死排名，可为了财联的椅子，怎么连最基本的底线都没有了。",
         prompt_language=i18n("中文"),
         text=target_text,
@@ -68,10 +68,10 @@ async def tts():
 
     if result_list:
         last_sampling_rate, last_audio_data = result_list[-1]
-        output_wav_path = os.path.join("output/", f"output_{file_name_text}.wav")
+        output_wav_path = os.path.join("GPT_SoVITS/output/", f"output_{file_name_text}.wav")
         sf.write(output_wav_path, last_audio_data, last_sampling_rate)
         print(f"Audio saved to {output_wav_path}")
-    return send_file(f"C:/Users/Lima/PycharmProjects/GPT-SoVITS/output/output_{file_name_text}.wav", as_attachment=True)
+    return send_file(f"output/output_{file_name_text}.wav", as_attachment=True)
 
 
 if __name__ == '__main__':
